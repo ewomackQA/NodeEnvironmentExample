@@ -4,15 +4,18 @@
   "description": "A simple express application with testing/security/localtunnel and other scripts/automation set up",
   "main": "buildScripts/srcServer.js",
   "scripts": {
-    "start": "npm-run-all --parallel security-check run:server lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check start:mockapi run:server lint:watch test:watch ",
     "run:server": "babel-node buildScripts/srcServer.js",
-    "share": "npm-run-all --parallel security-check run:server lint:watch test:watch localtunnel ",
+    "share": "npm-run-all --parallel security-check start:mockapi run:server lint:watch test:watch  localtunnel ",
     "localtunnel": "lt --port 3000",
     "security-check": "nsp check",
     "lint": "esw webpack.config.* src buildScripts",
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "generate-mock-data": "babel-node buildScripts/mockDataGeneration/generateMockData",
+    "start:mockapi": "json-server --watch ./buildScripts/mockDataGeneration/db.json --port 3001",
+    "prestart:mockapi": "npm run generate-mock-data"
   },
   "repository": {
     "type": "git",
@@ -34,11 +37,12 @@
     "express": "^4.15.4",
     "jsdom": "^11.2.0",
     "jsdom-global": "^3.0.2",
+    "json-schema-faker": "^0.5.0-rc11",
+    "json-server": "^0.12.0",
     "localtunnel": "^1.8.3",
     "mocha": "^3.5.3",
     "npm-run-all": "^4.1.1",
     "nsp": "^2.8.0",
-    "numeral": "^2.0.6",
     "open": "0.0.5",
     "path": "^0.12.7",
     "webpack-dev-middleware": "^1.12.0"
