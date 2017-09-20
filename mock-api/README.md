@@ -7,7 +7,9 @@
 * nsp installed and configured
 * localtunnel installed and configured
 * mocha/chai/jsdom tests setup
-* basic hard-coded api setup
+* mock api setup with json-schema-faker
+* delete functionality added to api
+* hotswap to development functionaliy added (baseUrl file)
 ## npm scripts
 ### "start": "npm-run-all --parallel security-check run:server lint:watch"
 Starts the server, runs a security check, runs eslint on watch mode
