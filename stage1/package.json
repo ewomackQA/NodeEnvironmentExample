@@ -1,0 +1,45 @@
+{
+  "name": "NodeEnvironmentExample",
+  "version": "1.0.0",
+  "description": "A simple express application with testing/security/localtunnel and other scripts/automation set up",
+  "main": "buildScripts/srcServer.js",
+  "scripts": {
+    "start": "npm-run-all --parallel security-check run:server lint:watch",
+    "run:server": "babel-node buildScripts/srcServer.js",
+    "share": "npm-run-all --parallel security-check run:server localtunnel ",
+    "localtunnel": "lt --port 3000",
+    "security-check": "nsp check",
+    "lint": "esw webpack.config.* src buildScripts",
+    "lint:watch": "npm run lint -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewomackQA/NodeEnvironmentExample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ewomackQA/NodeEnvironmentExample/issues"
+  },
+  "homepage": "https://github.com/ewomackQA/NodeEnvironmentExample#readme",
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "eslint": "^4.7.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-watch": "^3.1.2",
+    "express": "^4.15.4",
+    "localtunnel": "^1.8.3",
+    "npm-run-all": "^4.1.1",
+    "nsp": "^2.8.0",
+    "numeral": "^2.0.6",
+    "open": "0.0.5",
+    "path": "^0.12.7",
+    "webpack-dev-middleware": "^1.12.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "webpack": "^3.6.0"
+  }
+}
