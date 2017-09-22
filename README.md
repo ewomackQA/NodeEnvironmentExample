@@ -10,6 +10,12 @@
 * mock api setup with json-schema-faker
 * delete added to api
 * hotswap to development functionality added (baseUrl file)
+* sourcemaps with uglify js generated
+* css created/generated
+* hashing naming conventions for cache busting generated
+* seperate bundles for javascript to avoid large downloads generated
+* build step created for creating production ready files 
+* temporary server to run the static files created
 ## npm scripts
 ### "start": "npm-run-all --parallel security-check run:server lint:watch"
 Starts the server, runs a security check, runs eslint on watch mode
@@ -35,5 +41,11 @@ Generates the mock data according to the schema
 Starts the mock data api using json-server utilising the data in db.json, generated from json-schema-faker
 ### "prestart:mockapi": "npm run generate-mock-data"
 Runs the generate command before starting the server, for fresh new data.
-
-
+### "clean-dist": "rimraf ./dist && mkdir dist"
+Cleans the dist folder, deleting everything.
+### "prebuild": "npm-run-all clean-dist test lint"
+Runs the clean dist command, tests and linter.
+### "build": "babel-node buildSCripts/build.js"
+transpiles and runs the build.js file to start the webpack build process
+### "postbuild": "babel-node buildScripts/distServer.js"
+Runs the distribution build server.

@@ -11,7 +11,8 @@ export const schema = {
                     "id": {
                         "type": "number",
                         "unique": true,
-                        "minimum": 1
+                        "minimum": 1,
+                        $ref: "#/definitions/positiveInt"
                     },
                     "firstName": {
                         "type": "string",
@@ -23,6 +24,7 @@ export const schema = {
                     },
                     "email": {
                         "type": "string",
+                        "format": "email",
                         "faker": "internet.email"
                     }
                 },
@@ -30,5 +32,12 @@ export const schema = {
             }
         }
     },
-    "required": ["users"]
+    "required": ["users"],
+    definitions: {
+        positiveInt :{
+            type: "integer",
+            minimum: 0,
+            exclusiveMinimum: true
+        }
+    }
 };

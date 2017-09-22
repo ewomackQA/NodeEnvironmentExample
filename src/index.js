@@ -1,5 +1,5 @@
+import './index.css';
 import { getUsers, deleteUser } from "../api/userApi";
-
 
 getUsers().then(result => {
     let usersBody = "";
@@ -15,7 +15,6 @@ getUsers().then(result => {
     global.document.getElementById("users").innerHTML = usersBody;
     const deleteLinks = global.document.getElementsByClassName("deleteUser");
     Array.from(deleteLinks, (link) => {
-        console.log(deleteLinks);
         link.onclick = (event) => {
             const element = event.target;
             event.preventDefault();
