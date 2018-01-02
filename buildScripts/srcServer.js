@@ -30,6 +30,7 @@ app.get("/users", (req, res) => {
     ])
 });
 
+
 //Start server on set port
 app.listen(port, (err) => {
     if (err) {
